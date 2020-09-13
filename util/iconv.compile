@@ -1,0 +1,12 @@
+--exe iconv
+--no-default-source
+--def=MAKE_EXE
+--inc=.
+--inc=include
+--src-c=source/win_iconv.c
+--use-lib=:win-iconv.static
+--install-project=win-iconv
+--install-version-file=win-iconv.version.ini
+--install-dev
+--no-version
+--dependency-license=public-domain

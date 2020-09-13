@@ -49,6 +49,8 @@
 *.o2elf
 *.config.md5
 /bin/
-/build/
+/include/
 /lib/
-/win-iconv-0.0.8/
+/source/
+/build/
+/release/

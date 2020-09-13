@@ -1,0 +1,15 @@
+--dll win-iconv
+--no-default-source
+--def=MAKE_DLL
+--inc=.
+--inc=source
+--src-c=source/win_iconv.c
+--include-path=include
+--install-inc=.
+--def-file=source/iconv.def
+--install-project=win-iconv
+--install-version-file=win-iconv.version.ini
+--install-file=lib/win-iconv.lib=lib/iconv.lib
+--install-dev
+--no-version
+--dependency-license=public-domain
