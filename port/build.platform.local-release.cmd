@@ -3,7 +3,7 @@ rem Public domain
 rem http://unlicense.org/
 rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
-echo -^> platform local-release bzip2
+echo -^> platform local-release vendor-win-iconv
 
 goto cmdXDefined
 :cmdX
