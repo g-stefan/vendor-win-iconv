@@ -11,7 +11,7 @@ if not exist release\ echo Error - no release & exit 1
 
 set PROJECT=vendor-win-iconv
 SET PROJECT_VENDOR=%PROJECT:vendor-=%
-if not exist %PROJECT_VENDOR%.version.ini echo "Error - no version info" & goto cmdReleaseError
+if not exist %PROJECT_VENDOR%.version.ini echo "Error - no version info" & exit 1
 FOR /F "tokens=* USEBACKQ" %%F IN (`xyo-version --no-bump --get "--version-file=%PROJECT_VENDOR%.version.ini" %PROJECT_VENDOR%`) DO (
 	SET VERSION=%%F
 )
