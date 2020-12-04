@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> git-release-check vendor-win-iconv
+echo -^> github-release-check vendor-win-iconv
 
 set PROJECT=vendor-win-iconv
 SET PROJECT_VENDOR=%PROJECT:vendor-=%

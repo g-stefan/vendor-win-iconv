@@ -5,7 +5,7 @@ rem Created by Grigore Stefan <g_stefan@yahoo.com>
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-echo -^> git-release vendor-win-iconv
+echo -^> github-release vendor-win-iconv
 
 if not exist release\ echo Error - no release & exit 1
 
