@@ -1,0 +1,9 @@
+--lib win-iconv
+--no-default-source
+--src-c=source/win_iconv.c
+--install-include-direct
+--install-project=win-iconv
+--install-file=output/lib/win-iconv.static.lib=lib/iconv.static.lib
+--install-dev
+--no-version
+--dependency-license=public-domain
