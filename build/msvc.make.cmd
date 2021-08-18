@@ -20,10 +20,10 @@ exit 1
 
 call :cmdX xyo-cc --mode=%ACTION% --source-has-archive win-iconv
 
-if not exist include\ mkdir include
-if not exist include\iconv.h copy source\iconv.h include\iconv.h
-if not exist include\iconv mkdir include\iconv
-if not exist include\iconv\iconv.h copy source\iconv.h include\iconv\iconv.h
+if not exist output\include\ mkdir output\include
+if not exist output\include\iconv.h copy source\iconv.h output\include\iconv.h
+if not exist output\include\iconv mkdir output\include\iconv
+if not exist output\include\iconv\iconv.h copy source\iconv.h output\include\iconv\iconv.h
 
 call :cmdX xyo-cc --mode=%ACTION% @build/source/win-iconv.static.compile
 call :cmdX xyo-cc --mode=%ACTION% @build/source/win-iconv.dynamic.compile
