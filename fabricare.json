@@ -1,0 +1,9 @@
+{
+	"project": {
+		"name" : "win-iconv",
+		"type" : "xyo-vendor",
+		"SPDX-License-Identifier": "LicenseRef-Unlicense",
+		"sourceLink" : "https://github.com/win-iconv/win-iconv",
+		"version" : "0.0.8"
+	}
+}
