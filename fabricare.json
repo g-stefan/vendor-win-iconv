@@ -2,7 +2,7 @@
 	"project": {
 		"name" : "win-iconv",
 		"type" : "xyo-cpp",
-		"SPDX-License-Identifier": "LicenseRef-Unlicense",
+		"SPDX-License-Identifier": "Unlicense",
 		"sourceLink" : "https://github.com/win-iconv/win-iconv",
 		"version" : "0.0.8"
 	}
