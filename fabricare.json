@@ -1,13 +1,18 @@
 {
-	"project": {
-		"name" : "win-iconv",
+	"solution": {
+		"name" : "vendor-win-iconv",
 		"type" : "xyo-cpp",
-		"SPDX-License-Identifier": "Unlicense",
-		"sourceLink" : "https://github.com/win-iconv/win-iconv",
-		"version" : "0.0.8",
-		"hasRelease" : true,
-		"noVersion" : true,
-		"githubRelease" : true,
-		"githubRepository" : "vendor-win-iconv"
+		"projects": [
+			{
+				"name" : "win-iconv",
+				"SPDX-License-Identifier": "Unlicense",
+				"sourceLink" : "https://github.com/win-iconv/win-iconv",
+				"version" : "0.0.8",
+				"noVersion" : true
+			}
+		],
+		"releaseName" : "win-iconv",
+		"hasGithub" : true
 	}
 }
+
