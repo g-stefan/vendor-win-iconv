@@ -11,8 +11,7 @@
 				"noVersion" : true
 			}
 		],
-		"releaseName" : "win-iconv",
-		"hasGithub" : true
+		"releaseName" : "win-iconv"
 	}
 }
 
