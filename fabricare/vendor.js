@@ -1,6 +1,6 @@
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 // Public domain (Unlicense) <http://unlicense.org>
-// SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
+// SPDX-FileCopyrightText: 2022-2024 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
 messageAction("vendor");
@@ -22,7 +22,12 @@ if (Shell.hasEnv("VENDOR_SOURCE_GIT")) {
 	vendorSourceGit = Shell.getenv("VENDOR_SOURCE_GIT");
 };
 
-exitIf(Shell.system("curl --insecure --location " + vendorSourceGit + "/vendor-" + Project.name + "/releases/download/v" + Project.version + "/" + Project.vendor + ".7z --output archive/" + Project.vendor + ".7z"));
+var vendorSourceAuth = "";
+if (Shell.hasEnv("VENDOR_SOURCE_AUTH")) {
+	vendorSourceAuth = Shell.getenv("VENDOR_SOURCE_AUTH");
+};
+
+exitIf(Shell.system("curl --insecure --location " + vendorSourceGit + "/vendor-" + Project.name + "/releases/download/v" + Project.version + "/" + Project.vendor + ".7z "+vendorSourceAuth+" --output archive/" + Project.vendor + ".7z"));
 if (Shell.getFileSize("archive/" + Project.vendor + ".7z") > 16) {
 	return;
 };
