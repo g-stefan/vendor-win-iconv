@@ -23,77 +23,82 @@ Shell.mkdirRecursivelyIfNotExists("output/lib");
 Shell.mkdirRecursivelyIfNotExists("temp");
 
 Shell.mkdirRecursivelyIfNotExists("output/include");
-Shell.copyFile("source/iconv.h","output/include/iconv.h");
+Shell.copyFile("source/iconv.h", "output/include/iconv.h");
 Shell.mkdirRecursivelyIfNotExists("output/include/iconv");
-Shell.copyFile("source/iconv.h","output/include/iconv/iconv.h");
+Shell.copyFile("source/iconv.h", "output/include/iconv/iconv.h");
 
-global.xyoCCExtra = function() {
+global.xyoCCExtra = function () {
 	arguments.push(
 
-	    "--inc=output/include",
-	    "--use-lib-path=output/lib",
-	    "--rc-inc=output/include",
+		"--inc=output/include",
+		"--use-lib-path=output/lib",
+		"--rc-inc=output/include",
 
-	    "--inc=" + pathRepository + "/include",
-	    "--use-lib-path=" + pathRepository + "/lib",
-	    "--rc-inc=" + pathRepository + "/include"
+		"--inc=" + pathRepository + "/include",
+		"--use-lib-path=" + pathRepository + "/lib",
+		"--rc-inc=" + pathRepository + "/include"
 
 	);
 	return arguments;
 };
 
+if (Fabricare.isStatic()) {
+	var compileProject = {
+		"project": "win-iconv",
+		"includePath": [
+			"output/include",
+			"source",
+		],
+		"cSource": [
+			"source/win_iconv.c"
+		]
+	};
 
-var compileProject = {
-	"project" : "win-iconv",
-	"includePath" : [
-		"output/include",
-		"source",
-	],
-	"cSource" : [
-		"source/win_iconv.c"
-	]
+	Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
+	exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--lib", "--output-lib-path=output/lib")));
+	Shell.copyFile("output/lib/win-iconv.lib", "output/lib/iconv.lib");
 };
 
-Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--lib", "--output-lib-path=output/lib", "--crt-static")));
-Shell.copyFile("output/lib/win-iconv.static.lib","output/lib/iconv.static.lib");
+if (Fabricare.isDynamic()) {
 
-var compileProject = {
-	"project" : "win-iconv",
-	"defines" : [
-		"MAKE_DLL",
-	],
-	"includePath" : [
-		"output/include",
-		"source",
-	],
-	"cSource" : [
-		"source/win_iconv.c"
-	],
-	"linkerDefinitionsFile" : "source/iconv.def"
+	var compileProject = {
+		"project": "win-iconv",
+		"defines": [
+			"MAKE_DLL",
+		],
+		"includePath": [
+			"output/include",
+			"source",
+		],
+		"cSource": [
+			"source/win_iconv.c"
+		],
+		"linkerDefinitionsFile": "source/iconv.def"
+	};
+
+	Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
+	exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--dll", "--output-bin-path=output/bin", "--output-lib-path=output/lib")));
+	Shell.copyFile("output/lib/win-iconv.lib", "output/lib/iconv.lib");
+
 };
 
-Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--dll", "--output-bin-path=output/bin", "--output-lib-path=output/lib")));
-Shell.copyFile("output/lib/win-iconv.lib","output/lib/iconv.lib");
-
 var compileProject = {
-	"project" : "win-iconv",
-	"defines" : [
+	"project": "win-iconv",
+	"defines": [
 		"MAKE_EXE",
 	],
-	"includePath" : [
+	"includePath": [
 		"output/include",
 		"source",
 	],
-	"cSource" : [
+	"cSource": [
 		"source/win_iconv.c"
 	],
-	"library" : [
-		"win-iconv.static"
+	"library": [
+		"win-iconv"
 	]
 };
 
 Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin", "--crt-static")));
+exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin")));
 
