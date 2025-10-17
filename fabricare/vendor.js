@@ -35,7 +35,7 @@ Shell.removeFile("archive/" + Project.vendor + ".7z");
 
 // Source
 runInPath("archive", function() {
-	webLink = "https://github.com/win-iconv/win-iconv/archive/v0.0.8.zip";
+	webLink = "https://github.com/win-iconv/win-iconv/archive/v"+Project.version+".zip";
 	if (!Shell.fileExists(Project.vendor + ".zip")) {
 		exitIf(Shell.system("curl --insecure --location " + webLink + " --output " + Project.vendor + ".zip"));
 	};
